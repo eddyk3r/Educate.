@@ -129,6 +129,11 @@ class EducationalPlatform {
             subjectDescription: this.subjectDescriptionInput.value
         };
         
+        // Reset quiz state
+        this.quizScoreValue = 0;
+        this.currentQuizIndex = 0;
+        this.selectedAnswer = null;
+        
         this.showSection('loadingSection');
         
         try {
@@ -922,6 +927,262 @@ class EducationalPlatform {
                     ],
                     correctAnswer: 0
                 }
+            },
+            {
+                easy: {
+                    question: "Ce este o soluție particulară?",
+                    options: [
+                        "O soluție generală",
+                        "O soluție cu condiții inițiale",
+                        "O soluție aproximativă",
+                        "O soluție numerică"
+                    ],
+                    correctAnswer: 1
+                },
+                medium: {
+                    question: "Ce este o soluție generală?",
+                    options: [
+                        "O soluție cu constante arbitrare",
+                        "O soluție cu condiții inițiale",
+                        "O soluție aproximativă",
+                        "O soluție numerică"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Pentru ecuația dy/dx = 3y cu y(0) = 2, care este soluția particulară?",
+                    options: [
+                        "y = 2e^(3x)",
+                        "y = 3e^(2x)",
+                        "y = 2e^(x/3)",
+                        "y = 3e^(x/2)"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce sunt condițiile inițiale?",
+                    options: [
+                        "Condiții la limită",
+                        "Valorile funcției la un punct",
+                        "Condiții de continuitate",
+                        "Condiții de derivabilitate"
+                    ],
+                    correctAnswer: 1
+                },
+                medium: {
+                    question: "Ce este o ecuație separabilă?",
+                    options: [
+                        "O ecuație cu variabile separate",
+                        "O ecuație liniară",
+                        "O ecuație omogenă",
+                        "O ecuație cu coeficienți constanți"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Pentru ecuația dy/dx = xy, care este soluția generală?",
+                    options: [
+                        "y = Ce^(x²/2)",
+                        "y = Ce^(x/2)",
+                        "y = Ce^(2x)",
+                        "y = Ce^(x²)"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce este o ecuație liniară?",
+                    options: [
+                        "O ecuație cu linii",
+                        "O ecuație de gradul întâi",
+                        "O ecuație cu derivate liniare",
+                        "O ecuație cu coeficienți constanți"
+                    ],
+                    correctAnswer: 2
+                },
+                medium: {
+                    question: "Ce este o ecuație omogenă?",
+                    options: [
+                        "O ecuație cu termen liber zero",
+                        "O ecuație cu coeficienți constanți",
+                        "O ecuație separabilă",
+                        "O ecuație liniară"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Pentru ecuația d²y/dx² - 4y = 0, care este soluția generală?",
+                    options: [
+                        "y = C₁e^(2x) + C₂e^(-2x)",
+                        "y = C₁e^(4x) + C₂e^(-4x)",
+                        "y = C₁e^(x) + C₂e^(-x)",
+                        "y = C₁e^(x/2) + C₂e^(-x/2)"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce este o ecuație neliniară?",
+                    options: [
+                        "O ecuație cu derivate neliniare",
+                        "O ecuație cu produse de derivate",
+                        "O ecuație cu puteri de derivate",
+                        "Toate variantele de mai sus"
+                    ],
+                    correctAnswer: 3
+                },
+                medium: {
+                    question: "Ce este metoda separării variabilelor?",
+                    options: [
+                        "Separarea termenilor",
+                        "Separarea variabilelor în membri diferiți",
+                        "Separarea coeficienților",
+                        "Separarea soluțiilor"
+                    ],
+                    correctAnswer: 1
+                },
+                hard: {
+                    question: "Pentru ecuația dy/dx = y(1-y), care este soluția cu y(0) = 0.5?",
+                    options: [
+                        "y = 1/(1 + e^(-x))",
+                        "y = 1/(1 - e^(-x))",
+                        "y = 1/(1 + e^(x))",
+                        "y = 1/(1 - e^(x))"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce este o ecuație cu coeficienți constanți?",
+                    options: [
+                        "O ecuație cu coeficienți numerici",
+                        "O ecuație cu coeficienți variabili",
+                        "O ecuație cu coeficienți zero",
+                        "O ecuație cu coeficienți unitari"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce este ecuația caracteristică?",
+                    options: [
+                        "Ecuația pentru coeficienți",
+                        "Ecuația pentru rădăcini",
+                        "Ecuația pentru soluții",
+                        "Ecuația pentru derivate"
+                    ],
+                    correctAnswer: 1
+                },
+                hard: {
+                    question: "Pentru ecuația d²y/dx² + 4dy/dx + 4y = 0, care este soluția generală?",
+                    options: [
+                        "y = (C₁ + C₂x)e^(-2x)",
+                        "y = (C₁ + C₂x)e^(2x)",
+                        "y = C₁e^(-2x) + C₂e^(2x)",
+                        "y = C₁e^(-x) + C₂e^(x)"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce este o ecuație cu variabile separate?",
+                    options: [
+                        "O ecuație cu variabile în membri diferiți",
+                        "O ecuație cu variabile identice",
+                        "O ecuație cu variabile zero",
+                        "O ecuație cu variabile unitare"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce este metoda factorului integrant?",
+                    options: [
+                        "Metoda de integrare",
+                        "Metoda de multiplicare cu factor",
+                        "Metoda de separare",
+                        "Metoda de substituție"
+                    ],
+                    correctAnswer: 1
+                },
+                hard: {
+                    question: "Pentru ecuația dy/dx + 2xy = x, care este soluția generală?",
+                    options: [
+                        "y = 0.5 + Ce^(-x²)",
+                        "y = 0.5 + Ce^(x²)",
+                        "y = 1 + Ce^(-x²)",
+                        "y = 1 + Ce^(x²)"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce este o ecuație exactă?",
+                    options: [
+                        "O ecuație corectă",
+                        "O ecuație cu diferențială exactă",
+                        "O ecuație cu soluție exactă",
+                        "O ecuație cu coeficienți exacti"
+                    ],
+                    correctAnswer: 1
+                },
+                medium: {
+                    question: "Ce este o ecuație Bernoulli?",
+                    options: [
+                        "O ecuație cu puteri",
+                        "O ecuație cu logaritmi",
+                        "O ecuație cu exponențiale",
+                        "O ecuație cu trigonometrice"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Pentru ecuația dy/dx = y + y², care este soluția cu y(0) = 1?",
+                    options: [
+                        "y = 1/(2e^(-x) - 1)",
+                        "y = 1/(2e^(x) - 1)",
+                        "y = 1/(e^(-x) - 1)",
+                        "y = 1/(e^(x) - 1)"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce este o ecuație Riccati?",
+                    options: [
+                        "O ecuație cu termen pătratic",
+                        "O ecuație cu termen liniar",
+                        "O ecuație cu termen constant",
+                        "O ecuație cu termen zero"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce este metoda variației constantelor?",
+                    options: [
+                        "Metoda de variație a coeficienților",
+                        "Metoda de variație a soluțiilor",
+                        "Metoda de variație a condițiilor",
+                        "Metoda de variație a variabilelor"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Pentru ecuația d²y/dx² - 3dy/dx + 2y = e^x, care este soluția particulară?",
+                    options: [
+                        "y_p = -e^x",
+                        "y_p = e^x",
+                        "y_p = xe^x",
+                        "y_p = x²e^x"
+                    ],
+                    correctAnswer: 0
+                }
             }
         ];
         
@@ -1087,6 +1348,262 @@ class EducationalPlatform {
                         "Overlord: aeriană, Market Garden: debarcare",
                         "Nu a existat diferență",
                         "Overlord: Franța, Market Garden: Germania"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Când s-a terminat al doilea război mondial în Asia?",
+                    options: [
+                        "15 august 1945",
+                        "2 septembrie 1945",
+                        "8 mai 1945",
+                        "6 august 1945"
+                    ],
+                    correctAnswer: 1
+                },
+                medium: {
+                    question: "Ce a fost Conferința de la Potsdam?",
+                    options: [
+                        "Planificarea postbelică",
+                        "Declarația de război",
+                        "Capitularea Germaniei",
+                        "Formarea ONU"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Conferința de la Yalta și cea de la Potsdam?",
+                    options: [
+                        "Yalta: planificare, Potsdam: implementare",
+                        "Yalta: implementare, Potsdam: planificare",
+                        "Nu a existat diferență",
+                        "Yalta: Europa, Potsdam: Asia"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce a fost Operațiunea Market Garden?",
+                    options: [
+                        "Debarcarea din Normandia",
+                        "Operațiunea aeriană din Olanda",
+                        "Invazia Italiei",
+                        "Bombardarea Germaniei"
+                    ],
+                    correctAnswer: 1
+                },
+                medium: {
+                    question: "Ce a fost Bătălia de la Stalingrad?",
+                    options: [
+                        "Bătălia decisivă din URSS",
+                        "Bătălia din Franța",
+                        "Bătălia din Africa",
+                        "Bătălia din Pacific"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Operațiunea Overlord și cea Market Garden?",
+                    options: [
+                        "Overlord: debarcare, Market Garden: aeriană",
+                        "Overlord: aeriană, Market Garden: debarcare",
+                        "Nu a existat diferență",
+                        "Overlord: Franța, Market Garden: Germania"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce a fost Bătălia de la Midway?",
+                    options: [
+                        "Bătălia decisivă din Pacific",
+                        "Bătălia din Atlantic",
+                        "Bătălia din Mediterana",
+                        "Bătălia din Marea Nordului"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce a fost Operațiunea Torch?",
+                    options: [
+                        "Invazia Africii de Nord",
+                        "Invazia Italiei",
+                        "Invazia Franței",
+                        "Invazia Greciei"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Operațiunea Torch și cea Husky?",
+                    options: [
+                        "Torch: Africa de Nord, Husky: Sicilia",
+                        "Torch: Sicilia, Husky: Africa de Nord",
+                        "Nu a existat diferență",
+                        "Torch: Franța, Husky: Italia"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce a fost Bătălia de la Kursk?",
+                    options: [
+                        "Cea mai mare bătălie de tancuri",
+                        "Bătălia aeriană",
+                        "Bătălia navală",
+                        "Bătălia de infanterie"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce a fost Operațiunea Husky?",
+                    options: [
+                        "Invazia Siciliei",
+                        "Invazia Africii de Nord",
+                        "Invazia Italiei",
+                        "Invazia Greciei"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Bătălia de la Kursk și cea de la Stalingrad?",
+                    options: [
+                        "Kursk: ofensivă germană, Stalingrad: defensivă sovietică",
+                        "Kursk: defensivă germană, Stalingrad: ofensivă sovietică",
+                        "Nu a existat diferență",
+                        "Kursk: tancuri, Stalingrad: infanterie"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce a fost Bătălia de la El Alamein?",
+                    options: [
+                        "Bătălia decisivă din Africa",
+                        "Bătălia din Europa",
+                        "Bătălia din Asia",
+                        "Bătălia din Pacific"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce a fost Operațiunea Avalanche?",
+                    options: [
+                        "Invazia Italiei",
+                        "Invazia Franței",
+                        "Invazia Greciei",
+                        "Invazia Iugoslaviei"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Bătălia de la El Alamein și cea de la Tobruk?",
+                    options: [
+                        "El Alamein: ofensivă britanică, Tobruk: defensivă",
+                        "El Alamein: defensivă britanică, Tobruk: ofensivă",
+                        "Nu a existat diferență",
+                        "El Alamein: tancuri, Tobruk: infanterie"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce a fost Bătălia de la Pearl Harbor?",
+                    options: [
+                        "Atacul japonez din 1941",
+                        "Atacul german din 1940",
+                        "Atacul italian din 1941",
+                        "Atacul sovietic din 1941"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce a fost Operațiunea Shingle?",
+                    options: [
+                        "Debarcarea de la Anzio",
+                        "Debarcarea din Normandia",
+                        "Debarcarea din Sicilia",
+                        "Debarcarea din Africa"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Operațiunea Shingle și cea de la Anzio?",
+                    options: [
+                        "Shingle: codul operațiunii, Anzio: locația",
+                        "Shingle: locația, Anzio: codul operațiunii",
+                        "Nu a existat diferență",
+                        "Shingle: Italia, Anzio: Franța"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce a fost Bătălia de la Iwo Jima?",
+                    options: [
+                        "Bătălia din Pacific",
+                        "Bătălia din Atlantic",
+                        "Bătălia din Mediterana",
+                        "Bătălia din Marea Nordului"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce a fost Operațiunea Dragoon?",
+                    options: [
+                        "Debarcarea din sudul Franței",
+                        "Debarcarea din Normandia",
+                        "Debarcarea din Sicilia",
+                        "Debarcarea din Africa"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Operațiunea Dragoon și cea Overlord?",
+                    options: [
+                        "Dragoon: sudul Franței, Overlord: Normandia",
+                        "Dragoon: Normandia, Overlord: sudul Franței",
+                        "Nu a existat diferență",
+                        "Dragoon: Italia, Overlord: Franța"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce a fost Bătălia de la Okinawa?",
+                    options: [
+                        "Ultima bătălie majoră din Pacific",
+                        "Prima bătălie din Pacific",
+                        "Bătălia din Atlantic",
+                        "Bătălia din Mediterana"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce a fost Operațiunea Varsity?",
+                    options: [
+                        "Trecerea Rinului",
+                        "Debarcarea din Normandia",
+                        "Debarcarea din Sicilia",
+                        "Debarcarea din Africa"
+                    ],
+                    correctAnswer: 0
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Operațiunea Varsity și cea Plunder?",
+                    options: [
+                        "Varsity: aeriană, Plunder: terestră",
+                        "Varsity: terestră, Plunder: aeriană",
+                        "Nu a existat diferență",
+                        "Varsity: Rinul, Plunder: Elba"
                     ],
                     correctAnswer: 0
                 }
