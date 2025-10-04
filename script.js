@@ -171,7 +171,7 @@ class EducationalPlatform {
         if (subject.includes('ecuații diferențiale') || subject.includes('diferential') || subject.includes('matematica') || subject.includes('calcul')) {
             question = this.generateMathQuestion(index, detailLevel);
             answer = this.generateMathAnswer(index, detailLevel);
-        } else if (subject.includes('război mondial') || subject.includes('ww2') || subject.includes('istorie') || subject.includes('istoric')) {
+        } else if (subject.includes('război mondial') || subject.includes('razboi mondial') || subject.includes('ww2') || subject.includes('istorie') || subject.includes('istoric') || subject.includes('al doilea')) {
             question = this.generateHistoryQuestion(index, detailLevel);
             answer = this.generateHistoryAnswer(index, detailLevel);
         } else if (subject.includes('fizica') || subject.includes('fizic')) {
@@ -795,7 +795,7 @@ class EducationalPlatform {
             question = quizData.question;
             options = quizData.options;
             correctAnswer = quizData.correctAnswer;
-        } else if (subject.includes('război mondial') || subject.includes('ww2') || subject.includes('istorie') || subject.includes('istoric')) {
+        } else if (subject.includes('război mondial') || subject.includes('razboi mondial') || subject.includes('ww2') || subject.includes('istorie') || subject.includes('istoric') || subject.includes('al doilea')) {
             const quizData = this.generateHistoryQuiz(index, difficulty);
             question = quizData.question;
             options = quizData.options;
@@ -986,6 +986,102 @@ class EducationalPlatform {
                         "1 septembrie 1939",
                         "10 mai 1940",
                         "7 decembrie 1941"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Când a avut loc Ziua D?",
+                    options: [
+                        "6 iunie 1944",
+                        "6 iulie 1944",
+                        "6 august 1944",
+                        "6 septembrie 1944"
+                    ],
+                    correctAnswer: 0
+                },
+                medium: {
+                    question: "Ce a fost Holocaustul?",
+                    options: [
+                        "Invazia Poloniei",
+                        "Genocidul evreilor",
+                        "Bătălia de la Stalingrad",
+                        "Bombardarea Londrei"
+                    ],
+                    correctAnswer: 1
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Holocaust și alte crime de război?",
+                    options: [
+                        "Holocaustul a fost sistematic și organizat",
+                        "Holocaustul a fost doar în Germania",
+                        "Holocaustul a fost doar împotriva evreilor",
+                        "Holocaustul a fost doar în lagăre"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Când s-a terminat al doilea război mondial în Europa?",
+                    options: [
+                        "7 mai 1945",
+                        "8 mai 1945",
+                        "9 mai 1945",
+                        "10 mai 1945"
+                    ],
+                    correctAnswer: 1
+                },
+                medium: {
+                    question: "Ce a fost Conferința de la Yalta?",
+                    options: [
+                        "Declarația de război",
+                        "Planificarea postbelică",
+                        "Capitularea Germaniei",
+                        "Formarea ONU"
+                    ],
+                    correctAnswer: 1
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Conferința de la Yalta și cea de la Potsdam?",
+                    options: [
+                        "Yalta: planificare, Potsdam: implementare",
+                        "Yalta: implementare, Potsdam: planificare",
+                        "Nu a existat diferență",
+                        "Yalta: Europa, Potsdam: Asia"
+                    ],
+                    correctAnswer: 0
+                }
+            },
+            {
+                easy: {
+                    question: "Ce a fost Blitzkrieg?",
+                    options: [
+                        "Bombardarea Londrei",
+                        "Tactica de război fulger",
+                        "Invazia Franței",
+                        "Submarinul german"
+                    ],
+                    correctAnswer: 1
+                },
+                medium: {
+                    question: "Care a fost scopul Operațiunii Overlord?",
+                    options: [
+                        "Invazia Italiei",
+                        "Debarcarea din Normandia",
+                        "Bombardarea Germaniei",
+                        "Eliberarea Poloniei"
+                    ],
+                    correctAnswer: 1
+                },
+                hard: {
+                    question: "Care a fost diferența dintre Operațiunea Overlord și Operațiunea Market Garden?",
+                    options: [
+                        "Overlord: debarcare, Market Garden: aeriană",
+                        "Overlord: aeriană, Market Garden: debarcare",
+                        "Nu a existat diferență",
+                        "Overlord: Franța, Market Garden: Germania"
                     ],
                     correctAnswer: 0
                 }
@@ -1333,26 +1429,26 @@ class EducationalPlatform {
         
         if (difficulty === 'easy') {
             options = [
-                "Opțiunea corectă",
-                "Opțiunea greșită evidentă",
-                "Opțiunea greșită clară",
-                "Opțiunea greșită simplă"
+                "Conceptul fundamental și esențial",
+                "O noțiune secundară",
+                "Un detaliu irelevant",
+                "O informație greșită"
             ];
             correctAnswer = 0;
         } else if (difficulty === 'medium') {
             options = [
-                "Opțiunea corectă",
-                "Opțiunea aproape corectă",
-                "Opțiunea greșită",
-                "Opțiunea greșită clară"
+                "Conceptul principal și aplicațiile sale",
+                "Conceptul principal fără aplicații",
+                "Doar aplicațiile practice",
+                "Informații generale"
             ];
             correctAnswer = 0;
         } else { // hard
             options = [
-                "Opțiunea corectă",
-                "Opțiunea foarte asemănătoare",
-                "Opțiunea aproape corectă",
-                "Opțiunea similară"
+                "Conceptul principal cu aplicații practice și exemple concrete",
+                "Conceptul principal cu aplicații practice și exemple generale",
+                "Conceptul principal cu aplicații generale și exemple concrete",
+                "Conceptul principal cu aplicații generale și exemple generale"
             ];
             correctAnswer = 0;
         }
@@ -1457,7 +1553,10 @@ class EducationalPlatform {
         }
         
         // Update score display
-        document.getElementById('quizScore').textContent = this.quizScore;
+        const scoreElement = document.getElementById('quizScore');
+        if (scoreElement) {
+            scoreElement.textContent = this.quizScore;
+        }
         
         // Disable submit button
         document.getElementById('submitAnswer').disabled = true;
