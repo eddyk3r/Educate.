@@ -7,7 +7,7 @@ class EducationalPlatform {
         this.quizQuestions = [];
         this.currentFlashcardIndex = 0;
         this.currentQuizIndex = 0;
-        this.quizScore = 0;
+        this.quizScoreValue = 0;
         this.selectedAnswer = null;
         
         this.initializeElements();
@@ -42,7 +42,7 @@ class EducationalPlatform {
         this.flashcardProgressBar = document.getElementById('flashcardProgressBar');
         this.quizProgress = document.getElementById('quizProgress');
         this.quizProgressBar = document.getElementById('quizProgressBar');
-        this.quizScore = document.getElementById('quizScore');
+        this.quizScoreElement = document.getElementById('quizScore');
         this.totalQuestions = document.getElementById('totalQuestions');
         
         // Content elements
@@ -171,7 +171,7 @@ class EducationalPlatform {
         if (subject.includes('ecuații diferențiale') || subject.includes('diferential') || subject.includes('matematica') || subject.includes('calcul')) {
             question = this.generateMathQuestion(index, detailLevel);
             answer = this.generateMathAnswer(index, detailLevel);
-        } else if (subject.includes('război mondial') || subject.includes('razboi mondial') || subject.includes('ww2') || subject.includes('istorie') || subject.includes('istoric') || subject.includes('al doilea')) {
+        } else if (subject.includes('război mondial') || subject.includes('razboi mondial') || subject.includes('rázboi mondial') || subject.includes('ww2') || subject.includes('istorie') || subject.includes('istoric') || subject.includes('al doilea') || subject.includes('doilea razboi') || subject.includes('doilea rázboi')) {
             question = this.generateHistoryQuestion(index, detailLevel);
             answer = this.generateHistoryAnswer(index, detailLevel);
         } else if (subject.includes('fizica') || subject.includes('fizic')) {
@@ -787,6 +787,8 @@ class EducationalPlatform {
         const subject = this.currentSubject.toLowerCase();
         const difficulty = this.currentSettings.difficulty;
         
+        console.log('Generating quiz for subject:', subject, 'difficulty:', difficulty);
+        
         let question, options, correctAnswer;
         
         // Detectează tipul de subiect și generează quiz relevant
@@ -795,8 +797,10 @@ class EducationalPlatform {
             question = quizData.question;
             options = quizData.options;
             correctAnswer = quizData.correctAnswer;
-        } else if (subject.includes('război mondial') || subject.includes('razboi mondial') || subject.includes('ww2') || subject.includes('istorie') || subject.includes('istoric') || subject.includes('al doilea')) {
+        } else if (subject.includes('război mondial') || subject.includes('razboi mondial') || subject.includes('rázboi mondial') || subject.includes('ww2') || subject.includes('istorie') || subject.includes('istoric') || subject.includes('al doilea') || subject.includes('doilea razboi') || subject.includes('doilea rázboi')) {
+            console.log('Detected as history subject');
             const quizData = this.generateHistoryQuiz(index, difficulty);
+            console.log('Generated history quiz data:', quizData);
             question = quizData.question;
             options = quizData.options;
             correctAnswer = quizData.correctAnswer;
@@ -841,6 +845,7 @@ class EducationalPlatform {
             options = quizData.options;
             correctAnswer = quizData.correctAnswer;
         } else {
+            console.log('Using generic quiz generation');
             // Pentru subiecte necunoscute, generează quiz generic inteligent
             const quizData = this.generateGenericQuiz(subject, index, difficulty);
             question = quizData.question;
@@ -1519,6 +1524,12 @@ class EducationalPlatform {
         this.quizProgressBar.style.width = `${((index + 1) / this.quizQuestions.length) * 100}%`;
         this.totalQuestions.textContent = this.quizQuestions.length;
         
+        // Update score display
+        const scoreElement = document.getElementById('quizScore');
+        if (scoreElement) {
+            scoreElement.textContent = this.quizScoreValue;
+        }
+        
         // Reset state
         this.selectedAnswer = null;
         document.getElementById('submitAnswer').disabled = true;
@@ -1549,13 +1560,13 @@ class EducationalPlatform {
         if (this.selectedAnswer !== question.correctAnswer) {
             options[this.selectedAnswer].classList.add('incorrect');
         } else {
-            this.quizScore++;
+            this.quizScoreValue++;
         }
         
         // Update score display
         const scoreElement = document.getElementById('quizScore');
         if (scoreElement) {
-            scoreElement.textContent = this.quizScore;
+            scoreElement.textContent = this.quizScoreValue;
         }
         
         // Disable submit button
@@ -1571,7 +1582,7 @@ class EducationalPlatform {
     }
     
     showResults() {
-        const percentage = Math.round((this.quizScore / this.quizQuestions.length) * 100);
+        const percentage = Math.round((this.quizScoreValue / this.quizQuestions.length) * 100);
         this.finalScore.textContent = percentage;
         
         let message;
@@ -1590,7 +1601,7 @@ class EducationalPlatform {
     }
     
     restartQuiz() {
-        this.quizScore = 0;
+        this.quizScoreValue = 0;
         this.currentQuizIndex = 0;
         this.loadQuizQuestion(0);
         this.showSection('quizSection');
@@ -1604,7 +1615,7 @@ class EducationalPlatform {
         this.quizQuestions = [];
         this.currentFlashcardIndex = 0;
         this.currentQuizIndex = 0;
-        this.quizScore = 0;
+        this.quizScoreValue = 0;
         this.selectedAnswer = null;
         
         // Clear inputs
