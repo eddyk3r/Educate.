@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLearn - Platformă Educațională Personalizată</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-graduation-cap"></i> EduLearn</h1>
+            <p>Platformă educațională personalizată - Introdu orice subiect!</p>
+        </header>
+
+        <!-- Subject Input -->
+        <section class="subject-input" id="subjectInput">
+            <h2>Introdu subiectul tău</h2>
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="subjectName">Numele subiectului:</label>
+                    <input type="text" id="subjectName" placeholder="ex: Ecuații diferențiale, Al doilea război mondial, Fizica cuantică, Literatura română...">
+                </div>
+                <div class="input-group">
+                    <label for="subjectDescription">Descrierea subiectului (opțional):</label>
+                    <textarea id="subjectDescription" placeholder="Adaugă detalii suplimentare despre subiectul pe care vrei să îl înveți..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="learningLevel">Nivelul tău de cunoștințe:</label>
+                    <select id="learningLevel">
+                        <option value="beginner">Începător</option>
+                        <option value="intermediate">Intermediar</option>
+                        <option value="advanced">Avansat</option>
+                    </select>
+                </div>
+                <button class="continue-btn" id="continueToMode">
+                    <i class="fas fa-arrow-right"></i> Continuă
+                </button>
+            </div>
+        </section>
+
+        <!-- Mode Selection -->
+        <section class="mode-selection" id="modeSelection" style="display: none;">
+            <h2>Alege modul de învățare</h2>
+            <div class="subject-display">
+                <h3>Subiect: <span id="displaySubject"></span></h3>
+            </div>
+            <div class="modes-grid">
+                <div class="mode-card" data-mode="flashcards">
+                    <i class="fas fa-cards-blank"></i>
+                    <h3>Flashcarduri</h3>
+                    <p>Învățare prin repetiție și memorare</p>
+                </div>
+                <div class="mode-card" data-mode="quiz">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>Quiz</h3>
+                    <p>Testează-ți cunoștințele cu întrebări</p>
+                </div>
+            </div>
+            <button class="back-btn" id="backToSubjectInput">
+                <i class="fas fa-arrow-left"></i> Înapoi la subiect
+            </button>
+        </section>
+
+        <!-- Settings -->
+        <section class="settings" id="settings" style="display: none;">
+            <h2>Setări</h2>
+            <div class="settings-grid">
+                <div class="setting-group">
+                    <label for="detailLevel">Nivel de detaliu pentru flashcarduri:</label>
+                    <select id="detailLevel">
+                        <option value="essential">Esențial - Informații cheie</option>
+                        <option value="detailed">Detaliat - Informații complete</option>
+                    </select>
+                </div>
+                <div class="setting-group" id="difficultyGroup" style="display: none;">
+                    <label for="difficulty">Dificultatea quiz-ului:</label>
+                    <select id="difficulty">
+                        <option value="easy">Ușor - Răspunsuri clare</option>
+                        <option value="medium">Mediu - Răspunsuri moderate</option>
+                        <option value="hard">Greu - Răspunsuri foarte asemănătoare</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="numberOfItems">Numărul de elemente:</label>
+                    <select id="numberOfItems">
+                        <option value="5">5 elemente</option>
+                        <option value="10" selected>10 elemente</option>
+                        <option value="15">15 elemente</option>
+                        <option value="20">20 elemente</option>
+                    </select>
+                </div>
+            </div>
+            <div class="generation-info">
+                <p><i class="fas fa-info-circle"></i> Conținutul educațional va fi generat automat pe baza subiectului introdus.</p>
+            </div>
+            <button class="start-btn" id="startLearning">
+                <i class="fas fa-magic"></i> Generează și începe învățarea
+            </button>
+            <button class="back-btn" id="backToModes">
+                <i class="fas fa-arrow-left"></i> Înapoi la moduri
+            </button>
+        </section>
+
+        <!-- Loading Section -->
+        <section class="loading-section" id="loadingSection" style="display: none;">
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <h2>Generez conținutul educațional...</h2>
+                <p id="loadingMessage">Pregătesc flashcarduri și quiz-uri personalizate pentru subiectul tău.</p>
+            </div>
+        </section>
+
+        <!-- Flashcards Section -->
+        <section class="flashcards-section" id="flashcardsSection" style="display: none;">
+            <div class="flashcard-header">
+                <h2>Flashcarduri - <span id="flashcardSubject"></span></h2>
+                <div class="progress-info">
+                    <span id="flashcardProgress">1 / 10</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="flashcardProgressBar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-front">
+                        <h3 id="flashcardQuestion"></h3>
+                    </div>
+                    <div class="flashcard-back">
+                        <div id="flashcardAnswer"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flashcard-controls">
+                <button class="control-btn" id="showAnswer">
+                    <i class="fas fa-eye"></i> Arată răspunsul
+                </button>
+                <button class="control-btn" id="nextFlashcard">
+                    <i class="fas fa-forward"></i> Următorul
+                </button>
+                <button class="control-btn back-btn" id="backToSettingsFromFlashcards">
+                    <i class="fas fa-arrow-left"></i> Înapoi
+                </button>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section" id="quizSection" style="display: none;">
+            <div class="quiz-header">
+                <h2>Quiz - <span id="quizSubject"></span></h2>
+                <div class="progress-info">
+                    <span id="quizProgress">1 / 10</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="quizProgressBar"></div>
+                    </div>
+                </div>
+                <div class="score-info">
+                    Scor: <span id="quizScore">0</span> / <span id="totalQuestions">10</span>
+                </div>
+            </div>
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h3 id="quizQuestion"></h3>
+                    <div class="options-container" id="quizOptions"></div>
+                </div>
+            </div>
+            <div class="quiz-controls">
+                <button class="control-btn" id="submitAnswer" disabled>
+                    <i class="fas fa-check"></i> Confirmă răspunsul
+                </button>
+                <button class="control-btn back-btn" id="backToSettingsFromQuiz">
+                    <i class="fas fa-arrow-left"></i> Înapoi
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-container">
+                <h2>Rezultate</h2>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="finalScore">0</span>%
+                    </div>
+                    <p id="scoreMessage"></p>
+                </div>
+                <div class="results-actions">
+                    <button class="control-btn" id="restartQuiz">
+                        <i class="fas fa-redo"></i> Începe din nou
+                    </button>
+                    <button class="control-btn" id="backToSubjectFromResults">
+                        <i class="fas fa-home"></i> Subiect nou
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
